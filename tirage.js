@@ -8,22 +8,6 @@ const import_module = document.head.getElementsByTagName("script")[0].hasAttribu
 //console.log("import_module : " + import_module);
 
 
-// Modules
-const modules_head = {
-"style" :          [{"path":"styles/style.css", "default":true}],
-"nav" :            [{"path":"styles/nav.css", "default":true},],
-		        // {"path":"scripts/nav/nav.js", "default":true}],
-"mathjax" :        [{"path":"scripts/MathJax-master/es5/tex-mml-chtml.js", 
-		            "default":true,
-			        "attr":{"async":"true"}
-                   }],
-"prism" :          [{"path":"scripts/prism/prism.css", 
-                     "default":false},
-		            {"path":"scripts/prism/prism.js", 
-					 "default":false, "attr":{"async":"true"}}
-				    ],
-				  
-}
 
 // code de tirage au sort 
 // ✏️ Données

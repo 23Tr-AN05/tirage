@@ -12,7 +12,7 @@
  </head>
  <body onload="body()">
  
-<h2>Tirage d'élèves</h2>
+<h2>Tirage au sort</h2>
 
 <!-- Menus déroulants -->
 <div>
