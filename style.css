@@ -1,58 +1,591 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f0f2f5;
-    text-align: center;
+    font-family: 'Inter', sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
     padding: 20px;
+    position: relative;
+    overflow-x: hidden;
 }
 
-h2 {
-    color: #333;
+/* Loader */
+.loader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    flex-direction: column;
+    gap: 20px;
 }
 
-label {
-    font-weight: bold;
+.loader-spinner {
+    width: 50px;
+    height: 50px;
+    border: 5px solid #f3f3f3;
+    border-top: 5px solid #667eea;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
 }
 
-select, button {
-    padding: 5px 10px;
-    margin: 5px;
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.loader p {
+    color: white;
     font-size: 16px;
 }
 
-button {
-    cursor: pointer;
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    border-radius: 5px;
+/* Animations */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
-button:hover {
-    background-color: #45a049;
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
 }
 
-.result-container {
+/* Particules */
+.particle {
+    position: fixed;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    pointer-events: none;
+    animation: float 20s infinite ease-in-out;
+}
+
+/* Login Container */
+.login-container {
     display: flex;
     justify-content: center;
-    gap: 40px;
-    margin-top: 30px;
+    align-items: center;
+    min-height: 90vh;
+    animation: fadeInUp 0.8s ease-out;
 }
 
-.col {
+.login-card {
+    background: rgba(255, 255, 255, 0.98);
+    backdrop-filter: blur(10px);
+    border-radius: 32px;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    padding: 48px;
+    width: 100%;
+    max-width: 440px;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.login-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 35px 60px -15px rgba(0, 0, 0, 0.3);
+}
+
+.login-icon {
+    text-align: center;
+    font-size: 64px;
+    margin-bottom: 20px;
+}
+
+.login-title {
+    font-size: 32px;
+    font-weight: 800;
+    text-align: center;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    margin-bottom: 12px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.login-subtitle {
+    text-align: center;
+    color: #6b7280;
+    margin-bottom: 32px;
+    font-size: 14px;
+}
+
+.input-group {
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 8px;
+    color: #374151;
+    font-weight: 600;
+    font-size: 14px;
+    margin-left: 4px;
+}
+
+.input-group .input-icon {
+    position: absolute;
+    left: 16px;
+    bottom: 14px;
+    color: #9ca3af;
+    font-size: 18px;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 14px 16px 14px 48px;
+    border: 2px solid #e5e7eb;
+    border-radius: 16px;
+    font-size: 15px;
+    transition: all 0.3s ease;
+    background: #f9fafb;
+    box-sizing: border-box;
+}
+
+.input-group input:focus {
+    outline: none;
+    border-color: #667eea;
     background: white;
-    padding: 15px;
-    border-radius: 10px;
-    min-width: 150px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.1);
 }
 
-.col h3 {
-    margin-top: 0;
-    color: #333;
-    border-bottom: 1px solid #ccc;
-    padding-bottom: 5px;
+.input-group input::placeholder {
+    color: #9ca3af;
+    font-size: 14px;
+    padding-left: 0;
 }
 
-.col p {
-    margin: 5px 0;
+.login-button {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    padding: 14px;
+    border-radius: 16px;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.login-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px -5px rgba(102, 126, 234, 0.4);
+}
+
+.login-message {
+    margin-top: 20px;
+    color: #ef4444;
+    font-size: 13px;
+    text-align: center;
+}
+
+/* Contenu Principal */
+#tirageDiv {
+    animation: fadeInUp 0.6s ease-out;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.main-header {
+    text-align: center;
+    margin-bottom: 40px;
+    padding: 20px;
+}
+
+.main-header h1 {
+    font-size: 48px;
+    font-weight: 800;
+    background: linear-gradient(135deg, #fff 0%, #f0f0f0 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    margin-bottom: 10px;
+}
+
+.main-header p {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 18px;
+}
+
+/* Cards */
+.card {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border-radius: 28px;
+    padding: 28px;
+    margin-bottom: 30px;
+    box-shadow: 0 20px 35px -10px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 25px 40px -12px rgba(0, 0, 0, 0.2);
+}
+
+.card h2 {
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: #1f2937;
+}
+
+.card h2 i {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+/* Select et Inputs */
+select, input[type="text"], input[type="number"] {
+    padding: 12px 16px;
+    border: 2px solid #e5e7eb;
+    border-radius: 14px;
+    font-size: 14px;
+    font-family: 'Inter', sans-serif;
+    transition: all 0.3s ease;
+    background: white;
+    cursor: pointer;
+}
+
+select:focus, input:focus {
+    outline: none;
+    border-color: #667eea;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+/* Style spécifique pour le champ nombre manuel */
+.nombre-manuel {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: white;
+    border: 2px solid #e5e7eb;
+    border-radius: 14px;
+    padding: 2px;
+}
+
+.nombre-manuel select {
+    border: none;
+    padding: 10px 12px;
+    margin: 0;
+    width: auto;
+    background: transparent;
+    border-right: 1px solid #e5e7eb;
+    border-radius: 12px 0 0 12px;
+}
+
+.nombre-manuel input {
+    border: none;
+    padding: 10px 12px;
+    margin: 0;
+    width: 70px;
+    background: transparent;
+    text-align: center;
+}
+
+.nombre-manuel input:focus {
+    box-shadow: none;
+}
+
+.nombre-manuel input::placeholder {
+    text-align: center;
+}
+
+button {
+    padding: 12px 20px;
+    border: none;
+    border-radius: 14px;
+    font-size: 14px;
+    font-weight: 600;
+    font-family: 'Inter', sans-serif;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: white;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(102, 126, 234, 0.3);
+}
+
+.btn-secondary {
+    background: #f3f4f6;
+    color: #374151;
+}
+
+.btn-secondary:hover {
+    background: #e5e7eb;
+    transform: translateY(-2px);
+}
+
+.btn-success {
+    background: linear-gradient(135deg, #10b981, #059669);
+    color: white;
+}
+
+.btn-warning {
+    background: linear-gradient(135deg, #f59e0b, #d97706);
+    color: white;
+}
+
+/* Résultats de tirage en deux colonnes */
+.tirage-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    margin-top: 20px;
+}
+
+.tirage-col {
+    background: linear-gradient(135deg, #f8fafc, #f1f5f9);
+    border-radius: 20px;
+    padding: 20px;
+    text-align: center;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(102, 126, 234, 0.2);
+}
+
+.tirage-col:hover {
+    transform: scale(1.02);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+}
+
+.tirage-col h3 {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 15px;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.tirage-col p {
+    line-height: 1.8;
+    color: #1f2937;
+    font-weight: 500;
+}
+
+.tirage-single {
+    background: linear-gradient(135deg, #f8fafc, #f1f5f9);
+    border-radius: 20px;
+    padding: 20px;
+    text-align: center;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+/* Groupes avec deux couleurs */
+.groupes-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.group-card {
+    border-radius: 20px;
+    padding: 20px;
+    min-width: 180px;
+    text-align: center;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    position: relative;
+}
+
+.group-card.selected {
+    border: 3px solid #f59e0b;
+    transform: scale(1.02);
+}
+
+.group-card.selected::after {
+    content: "✓";
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    background: #f59e0b;
+    color: white;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.group-card h3 {
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 15px;
+}
+
+.group-card p {
+    line-height: 1.6;
+}
+
+/* Couleur 1 - Orange */
+.group-card.type-orange {
+    background: linear-gradient(135deg, #fef3c7, #fde68a);
+    border: 1px solid rgba(245, 158, 11, 0.3);
+}
+
+.group-card.type-orange h3 {
+    color: #d97706;
+}
+
+.group-card.type-orange p {
+    color: #92400e;
+}
+
+/* Couleur 2 - Bleu/Vert */
+.group-card.type-teal {
+    background: linear-gradient(135deg, #ccfbf1, #99f6e4);
+    border: 1px solid rgba(20, 184, 166, 0.3);
+}
+
+.group-card.type-teal h3 {
+    color: #0f766e;
+}
+
+.group-card.type-teal p {
+    color: #115e59;
+}
+
+/* Control Group */
+.control-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.group-actions {
+    margin-top: 20px;
+    text-align: center;
+    padding-top: 20px;
+    border-top: 1px solid #e5e7eb;
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+/* Admin Section */
+.admin-section {
+    background: linear-gradient(135deg, #1e293b, #0f172a);
+}
+
+.admin-section h2 {
+    color: white;
+}
+
+.admin-section label {
+    color: #cbd5e1;
+}
+
+/* Export Section */
+.export-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.export-row label {
+    font-weight: 600;
+    color: #374151;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .login-card {
+        padding: 32px 24px;
+    }
+    
+    .login-title {
+        font-size: 28px;
+    }
+    
+    .main-header h1 {
+        font-size: 32px;
+    }
+    
+    .card {
+        padding: 20px;
+    }
+    
+    .control-group {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    select, input, button {
+        width: 100%;
+    }
+    
+    .tirage-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .group-actions {
+        flex-direction: column;
+    }
+    
+    .nombre-manuel {
+        width: 100%;
+    }
+    
+    .nombre-manuel select {
+        flex: 2;
+    }
+    
+    .nombre-manuel input {
+        flex: 1;
+    }
 }

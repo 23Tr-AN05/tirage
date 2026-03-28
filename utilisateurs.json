@@ -1,0 +1,22 @@
+{
+  "utilisateurs": [
+    {
+      "identifiant": "dupont",
+      "motdepasse": "1234",
+      "classes": ["5A"],
+      "role": "enseignant"
+    },
+    {
+      "identifiant": "martin",
+      "motdepasse": "abcd",
+      "classes": ["5B"],
+      "role": "enseignant"
+    },
+    {
+      "identifiant": "lopez",
+      "motdepasse": "pass",
+      "classes": ["5A", "5B", "4A"],
+      "role": "admin"
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "5A": {
+    "g1": ["Alice Dupont", "Bob Martin", "Charlie Durand", "Diana Lambert", "Eric Moreau"],
+    "g2": ["David Leroy", "Emma Petit", "Lucas Moreau", "Sophie Bernard", "Thomas Dubois"]
+  },
+  "5B": {
+    "g1": ["Nina Lopez", "Paul Bernard", "Léo Simon", "Julie Martin", "Antoine Durand"],
+    "g2": ["Sara Laurent", "Tom Michel", "Inès Garcia", "Louis Petit", "Camille Robert"]
+  },
+  "4A": {
+    "g1": ["Emma Watson", "Lucas Brown", "Sophie Davis", "Thomas Wilson", "Julie Taylor"],
+    "g2": ["Nathan Martinez", "Chloe Anderson", "Hugo Thomas", "Lea Jackson", "Raphael White"]
+  }
+}

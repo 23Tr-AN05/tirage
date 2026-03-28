@@ -1,0 +1,8 @@
+{
+  "version": "1.0",
+  "date_creation": "2024-01-01",
+  "options": {
+    "max_eleves_tirage": 50,
+    "max_groupes_taille": 6
+  }
+}
